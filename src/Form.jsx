@@ -16,10 +16,11 @@ export default function Form(){
     let [ticket,setTicket]=useState('')
     let [cat,setCat]=useState('')
     let [pay,setPay]=useState('')
-    let [uniqId,setUniqId]=useState(null);
 
     const handleSubmit=(e)=> {
         e.preventDefault();
+        let id=uniqid();
+        console.log(id)
         let data={
             CampusID:campId,
             Name:name,
@@ -28,7 +29,7 @@ export default function Form(){
             Ticket:ticket,
             Category:cat,
             Pay:pay,
-            UniqueID:uniqid(),
+            UniqueID:id,
         }
         axios.post("https://api.sheetbest.com/sheets/ef9cd1df-74f8-4f5e-8663-d79e98919695",data).then((response)=>{
             console.log(response);
@@ -39,15 +40,7 @@ export default function Form(){
             setTicket('');
             setCat('');
             setPay('');
-            uniqId(null)
         })
-        console.log(campId);
-        console.log(name);
-        console.log(phone);
-        console.log(email);
-        console.log(ticket);
-        console.log(cat);
-        console.log(pay);
     }
 
     return(
