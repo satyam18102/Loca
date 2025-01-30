@@ -12,6 +12,10 @@ form{
     padding-top: 2rem;
     justify-self: center !important;
 }
+.margin{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 @media screen and (max-width: 600px) {
     form{
         width: 90% !important;

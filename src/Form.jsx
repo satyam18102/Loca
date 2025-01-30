@@ -69,7 +69,7 @@ export default function Form(){
                 <Field className="Field" label="Payment Method" required>
                     <Input placeholder="Cash / UPI" onChange={(e)=>setPay(e.target.value)} value={pay} />
                 </Field>
-                <Button colorPalette="teal" variant="solid" type="submit">Submit</Button>
+                <Button colorPalette="teal" variant="solid" type="submit" className='margin' >Submit</Button>
             </form>
         </div>
         </>
