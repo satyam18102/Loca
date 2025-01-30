@@ -4,8 +4,15 @@ import { Button, Input,} from "@chakra-ui/react"
 import { Field } from "./components/ui/field"
 import { useState } from 'react';
 import axios from 'axios';
-import uniqid from 'uniqid'
+import uniqid from 'uniqid';
+import Loader from './Loader';
+import Success from './Success';
+import { QrCode } from "@chakra-ui/react"
 
+import {
+    NativeSelectField,
+    NativeSelectRoot,
+  } from "./components/ui/native-select"
 
 export default function Form(){
 
@@ -16,10 +23,13 @@ export default function Form(){
     let [ticket,setTicket]=useState('')
     let [cat,setCat]=useState('')
     let [pay,setPay]=useState('')
+    let [loading,setLoading]=useState(false);
+    let [success,setSuccess]=useState(false);
+    let id=uniqid();
 
     const handleSubmit=(e)=> {
+        setLoading(true);
         e.preventDefault();
-        let id=uniqid();
         console.log(id)
         let data={
             CampusID:campId,
@@ -40,9 +50,10 @@ export default function Form(){
             setTicket('');
             setCat('');
             setPay('');
+            setLoading(false)
         })
     }
-
+if(!loading && !success){
     return(
         <>
         <div className="main">
@@ -66,12 +77,43 @@ export default function Form(){
                 <Field className="Field" label="Category" required>
                     <Input placeholder="1-Day Pass / 2-Day Pass" onChange={(e)=>setCat(e.target.value)} value={cat} />
                 </Field>
-                <Field className="Field" label="Payment Method" required>
-                    <Input placeholder="Cash / UPI" onChange={(e)=>setPay(e.target.value)} value={pay} />
-                </Field>
+                <Field label="Payment Method">
+          <NativeSelectRoot className="color" >
+            <NativeSelectField
+            className="color"
+              name="Payment Method"
+              onChange={(e)=>setPay(e.target.value)} value={pay}
+              items={[
+                "Select",
+                "UPI",
+                "Cash",
+              ]}
+            />
+          </NativeSelectRoot>
+        </Field>
                 <Button colorPalette="teal" variant="solid" type="submit" className='margin' >Submit</Button>
             </form>
+            <QrCode.Root value={id}>
+            <QrCode.Frame>
+            <QrCode.Pattern />
+      </QrCode.Frame>
+    </QrCode.Root>
         </div>
         </>
     );
+}
+else if(loading && !success){
+    return(
+        <>
+            <Loader></Loader>
+        </>
+    );
+}
+else if(loding && success){
+    return(
+        <>
+            <Success></Success>
+        </>
+    );
+}
 }

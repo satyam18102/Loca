@@ -12,6 +12,9 @@ form{
     padding-top: 2rem;
     justify-self: center !important;
 }
+.color{
+    color: #605b5b;
+}
 .margin{
     margin-top: 2rem;
     margin-bottom: 2rem;

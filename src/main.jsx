@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Provider } from "./components/ui/provider"
-import axios from 'axios'
+import { Provider } from "./components/ui/provider.jsx"
 import './index.css'
 import Form from './Form.jsx'
 
