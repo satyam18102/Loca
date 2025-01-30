@@ -1,0 +1,21 @@
+body{
+    margin-top: 50px !important;
+    text-align: center !important;
+}
+.Field{
+    /* width: 50% !important; */
+    justify-self: center !important;
+    margin-top: 2rem;
+}
+form{
+    width: 40% !important;
+    padding-top: 2rem;
+    justify-self: center !important;
+}
+@media screen and (max-width: 600px) {
+    form{
+        width: 90% !important;
+        padding-top: 2rem;
+        justify-self: center !important;
+    }
+  }
