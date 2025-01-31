@@ -3,13 +3,13 @@
     width: 75px;
     margin-top: 15rem;
 }
-.margin{
+.marg{
     margin-top: 15rem !important;
     padding-top: 15rem !important;
     display: block !important;
     text-align: center !important;
 }
-.margin img{
+.marg img{
     display: block !important;
     justify-self: center !important;
     margin-bottom: 2rem;
