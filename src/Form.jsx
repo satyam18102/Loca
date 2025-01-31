@@ -13,23 +13,28 @@ import {
     NativeSelectRoot,
   } from "./components/ui/native-select"
 
-export default function Form(){
-
-    let [campId,setCampId]=useState('')
-    let [name,setName]=useState('')
-    let [phone,setPhone]=useState('')
-    let [email,setEmail]=useState('')
-    let [ticket,setTicket]=useState('')
-    let [cat,setCat]=useState('')
-    let [pay,setPay]=useState('')
-    let [loading,setLoading]=useState(false);
-    let [success,setSuccess]=useState(false);
-    let [id]=useState(uniqid());
-    
-    const handleSubmit=(e)=> {
+  export default function Form(){
+      
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed, so we add 1 and pad with zero
+      const day = currentDate.getDate().toString().padStart(2, '0');
+      const hour = currentDate.getHours().toString().padStart(2, '0');
+      const minute = currentDate.getMinutes().toString().padStart(2, '0');
+      const formattedDateTime = `/${day}${month}${year}/${hour}:${minute}`
+      let [campId,setCampId]=useState('')
+      let [name,setName]=useState('')
+      let [phone,setPhone]=useState('')
+      let [email,setEmail]=useState('')
+      let [ticket,setTicket]=useState('')
+      let [cat,setCat]=useState('')
+      let [pay,setPay]=useState('')
+      let [loading,setLoading]=useState(false);
+      let [success,setSuccess]=useState(false);
+      let [id]=useState(uniqid()+formattedDateTime);
+      const handleSubmit=(e)=> {
         setLoading(true);
         e.preventDefault();
-        console.log(id)
         let data={
             CampusID:campId,
             Name:name,
@@ -42,13 +47,6 @@ export default function Form(){
         }
         axios.post("https://api.sheetbest.com/sheets/ef9cd1df-74f8-4f5e-8663-d79e98919695",data).then((response)=>{
             console.log(response);
-            setCampId('');
-            setName('');
-            setPhone('');
-            setEmail('');
-            setTicket('');
-            setCat('');
-            setPay('');
             setSuccess(true)
         })
     }
@@ -114,7 +112,7 @@ else if(loading && !success){
 else if(loading && success){
     return(
         <>
-            <Success id={id}/>
+            <Success id={id} nam={name} phone={phone} email={email} ticket={ticket} cat={cat}/>
         </>
     );
 }

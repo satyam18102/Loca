@@ -6,12 +6,12 @@ import { useRef } from "react";
 import QRCode from "react-qr-code";
 
 
-export default function Success(id){
+export default function Success( name){
 
   const pdfRef= useRef();
   
   let downloadPDF =()=>{
-    console.log(id)
+    // console.log(id)
     const input=pdfRef.current;
     html2canvas(input).then((canvas)=>{
       const imgData=canvas.toDataURL('image/png');
@@ -27,10 +27,8 @@ export default function Success(id){
       pdf.save('Ticket.pdf')
     })
   }
-  let id1=id[0];
-  console.log(id)
-  console.log(id1)
-  console.log(id.id)
+  // console.log(id.id);
+  console.log(name);
   return (
     <>
       <div className="marg" ref={pdfRef}>
@@ -40,11 +38,16 @@ export default function Success(id){
           </div>
         <img src="image.png"></img>
         <Heading>Thank you for Purchasing Ticket to Loca Luz </Heading>
+          <Heading>Name : {name.nam}</Heading>
+          <Heading>Phone : {name.phone}</Heading>
+          <Heading>Email : {name.email}</Heading>
+          <Heading>Ticket : {name.ticket}</Heading>
+          <Heading>Category : {name.cat}</Heading>
         <div className="dis">
         <QRCode
     size={256}
     style={{ height: "auto",backgroundColor:"black", maxWidth: "30%", width: "30%" }}
-    value={id.id}
+    value={name.id}
     viewBox={`0 0 256 256`}
     className="qr"
     />
