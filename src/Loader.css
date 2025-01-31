@@ -4,14 +4,51 @@
     margin-top: 15rem;
 }
 .marg{
-    margin-top: 15rem !important;
-    padding-top: 15rem !important;
+    margin-top: 5rem !important;
+    /* padding-top: 5rem !important; */
     display: block !important;
     text-align: center !important;
 }
 .marg img{
     display: block !important;
     justify-self: center !important;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     height: 100px;
 }
+.dis{
+    margin-top: 2rem !important;
+    margin-left: 40rem !important;
+    height: 300px;
+    width: 800px;
+}
+.loca{
+    height: 150px;
+}
+.sloth{
+    height: 150px;
+    margin-left: 65rem;
+    float: right !important;
+}
+.flex{
+    display: flex;
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    .dis{
+        margin-top: 2rem !important;
+        margin-left: 8rem !important;
+        height: 300px;
+        width: 400px;
+    }
+    .loca{
+        height: 150px;
+    }
+    .sloth{
+        height: 150px;
+        margin-left: 0;
+        float: right !important;
+    }
+    .flex{
+        display: flex;
+    }
+  }

@@ -3,7 +3,6 @@ import { Heading } from "@chakra-ui/react";
 import { Button, Input,} from "@chakra-ui/react"
 import { Field } from "./components/ui/field"
 import { useState } from 'react';
-import QRCode from "react-qr-code";
 import axios from 'axios';
 import uniqid from 'uniqid';
 import Loader from './Loader';
@@ -26,15 +25,11 @@ export default function Form(){
     let [loading,setLoading]=useState(false);
     let [success,setSuccess]=useState(false);
     let [id]=useState(uniqid());
-    let [img,setImg]=useState();
     
     const handleSubmit=(e)=> {
         setLoading(true);
         e.preventDefault();
         console.log(id)
-        setImg(<QRCode
-            value={id}
-            viewBox={`0 0 256 256`}/>)
         let data={
             CampusID:campId,
             Name:name,
@@ -44,7 +39,6 @@ export default function Form(){
             Category:cat,
             Pay:pay,
             UniqueID:id,
-            Img:img,
         }
         axios.post("https://api.sheetbest.com/sheets/ef9cd1df-74f8-4f5e-8663-d79e98919695",data).then((response)=>{
             console.log(response);
@@ -62,6 +56,10 @@ if(!loading && !success){
     return(
         <>
         <div className="main">
+            <div className='flex' >
+            <img src='loca.png' className='loca'></img>
+            <img src='sloth.png' className='sloth'></img>
+            </div>
             <form onSubmit={handleSubmit}>
                 <Heading size="3xl" >Loca Luz Carnival Ticket Registration</Heading>
                 <Field className="Field" label="Campus Ambassador ID" required>
@@ -100,7 +98,6 @@ if(!loading && !success){
                     />
                 </NativeSelectRoot>
                 </Field>
-                <h1>{img}</h1>
                 <Button colorPalette="teal" variant="solid" type="submit" className='margin' >Submit</Button>
             </form>
         </div>
@@ -117,7 +114,7 @@ else if(loading && !success){
 else if(loading && success){
     return(
         <>
-            <Success/>
+            <Success id={id}/>
         </>
     );
 }

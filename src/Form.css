@@ -19,10 +19,33 @@ form{
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+.loca{
+    height: 150px;
+}
+.sloth{
+    height: 150px;
+    margin-left: 65rem;
+    float: right !important;
+}
+.flex{
+    display: flex;
+    width: 100%;
+}
 @media screen and (max-width: 600px) {
     form{
         width: 90% !important;
         padding-top: 2rem;
         justify-self: center !important;
+    }
+    .loca{
+        height: 100px;
+    }
+    .sloth{
+        height: 100px;
+        margin-left: 0;
+        float: right !important;
+    }
+    .flex{
+        display: flex;
     }
   }

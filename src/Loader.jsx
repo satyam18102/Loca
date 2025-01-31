@@ -1,4 +1,4 @@
-import { Heading, Spinner, Text, VStack } from "@chakra-ui/react"
+import { Heading, Spinner, VStack } from "@chakra-ui/react"
 import './Loader.css'
 
 export default function Loader() {
