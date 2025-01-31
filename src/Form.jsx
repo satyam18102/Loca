@@ -103,14 +103,14 @@ if(!loading && !success){
 else if(loading && !success){
     return(
         <>
-            <Loader></Loader>
+            <Loader/>
         </>
     );
 }
 else if(loading && success){
     return(
         <>
-            <Success></Success>
+            <Success/>
         </>
     );
 }
