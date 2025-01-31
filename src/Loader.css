@@ -51,4 +51,7 @@
     .flex{
         display: flex;
     }
+    Button{
+        background-color: teal;
+    }
   }
