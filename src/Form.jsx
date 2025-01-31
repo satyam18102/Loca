@@ -7,7 +7,6 @@ import axios from 'axios';
 import uniqid from 'uniqid';
 import Loader from './Loader';
 import Success from './Success';
-import { QrCode } from "@chakra-ui/react"
 
 import {
     NativeSelectField,
@@ -25,8 +24,8 @@ export default function Form(){
     let [pay,setPay]=useState('')
     let [loading,setLoading]=useState(false);
     let [success,setSuccess]=useState(false);
-    let id=uniqid();
-
+    let [id]=useState(uniqid());
+    
     const handleSubmit=(e)=> {
         setLoading(true);
         e.preventDefault();
@@ -50,7 +49,7 @@ export default function Form(){
             setTicket('');
             setCat('');
             setPay('');
-            setLoading(false)
+            setSuccess(true)
         })
     }
 if(!loading && !success){
@@ -71,33 +70,32 @@ if(!loading && !success){
                 <Field className="Field" label="Email Address" required>
                     <Input placeholder="Enter Your Email-ID" onChange={(e)=>setEmail(e.target.value)} value={email} />
                 </Field>
-                <Field className="Field" label="Ticket Type" required>
-                    <Input placeholder="FANPIT / VIP / Premium" onChange={(e)=>setTicket(e.target.value)} value={ticket} />
+                <Field label="Ticket Type" className="Field" required>
+                <NativeSelectRoot className="color" >
+                    <NativeSelectField className="color" name="Ticket Type" onChange={(e)=>setTicket(e.target.value)} value={ticket}
+                    items={[
+                    "Select","Fanpit", "VIP", "Premium",]}
+                    />
+                </NativeSelectRoot>
                 </Field>
-                <Field className="Field" label="Category" required>
-                    <Input placeholder="1-Day Pass / 2-Day Pass" onChange={(e)=>setCat(e.target.value)} value={cat} />
+                <Field label="Category" className="Field" required>
+                <NativeSelectRoot className="color" >
+                    <NativeSelectField className="color" name="Category" onChange={(e)=>setCat(e.target.value)} value={cat}
+                    items={[
+                    "Select", "1-Day Pass", "2-Day Pass",]}
+                    />
+                </NativeSelectRoot>
                 </Field>
-                <Field label="Payment Method">
-          <NativeSelectRoot className="color" >
-            <NativeSelectField
-            className="color"
-              name="Payment Method"
-              onChange={(e)=>setPay(e.target.value)} value={pay}
-              items={[
-                "Select",
-                "UPI",
-                "Cash",
-              ]}
-            />
-          </NativeSelectRoot>
-        </Field>
+                <Field label="Payment Method" className="Field" required>
+                <NativeSelectRoot className="color" >
+                    <NativeSelectField className="color" name="Payment Method" onChange={(e)=>setPay(e.target.value)} value={pay}
+                    items={[
+                    "Select", "UPI", "Cash",]}
+                    />
+                </NativeSelectRoot>
+                </Field>
                 <Button colorPalette="teal" variant="solid" type="submit" className='margin' >Submit</Button>
             </form>
-            <QrCode.Root value={id}>
-            <QrCode.Frame>
-            <QrCode.Pattern />
-      </QrCode.Frame>
-    </QrCode.Root>
         </div>
         </>
     );
@@ -109,7 +107,7 @@ else if(loading && !success){
         </>
     );
 }
-else if(loding && success){
+else if(loading && success){
     return(
         <>
             <Success></Success>

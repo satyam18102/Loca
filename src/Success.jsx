@@ -1,11 +1,9 @@
-import { QrCode } from "@chakra-ui/react"
+import { Heading } from "@chakra-ui/react";
 
-export default function Success(id){
+export default function Success(){
   return (
-    <QrCode.Root value="Hello World">
-      <QrCode.Frame>
-        <QrCode.Pattern />
-      </QrCode.Frame>
-    </QrCode.Root>
+      <div>
+        <Heading>Thank you for Filling the Form </Heading>
+      </div>
   )
 }
