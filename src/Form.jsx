@@ -3,6 +3,7 @@ import { Heading } from "@chakra-ui/react";
 import { Button, Input,} from "@chakra-ui/react"
 import { Field } from "./components/ui/field"
 import { useState } from 'react';
+import QRCode from "react-qr-code";
 import axios from 'axios';
 import uniqid from 'uniqid';
 import Loader from './Loader';
@@ -22,14 +23,18 @@ export default function Form(){
     let [ticket,setTicket]=useState('')
     let [cat,setCat]=useState('')
     let [pay,setPay]=useState('')
-    let [loading,setLoading]=useState(false);
+    let [loading,setLoading]=useState(true);
     let [success,setSuccess]=useState(false);
     let [id]=useState(uniqid());
+    let [img,setImg]=useState();
     
     const handleSubmit=(e)=> {
         setLoading(true);
         e.preventDefault();
         console.log(id)
+        setImg(<QRCode
+            value={id}
+            viewBox={`0 0 256 256`}/>)
         let data={
             CampusID:campId,
             Name:name,
@@ -39,6 +44,7 @@ export default function Form(){
             Category:cat,
             Pay:pay,
             UniqueID:id,
+            Img:img,
         }
         axios.post("https://api.sheetbest.com/sheets/ef9cd1df-74f8-4f5e-8663-d79e98919695",data).then((response)=>{
             console.log(response);
@@ -94,6 +100,7 @@ if(!loading && !success){
                     />
                 </NativeSelectRoot>
                 </Field>
+                <h1>{img}</h1>
                 <Button colorPalette="teal" variant="solid" type="submit" className='margin' >Submit</Button>
             </form>
         </div>

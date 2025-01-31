@@ -1,10 +1,11 @@
-import { Spinner, Text, VStack } from "@chakra-ui/react"
+import { Heading, Spinner, Text, VStack } from "@chakra-ui/react"
+import './Loader.css'
 
 export default function Loader() {
   return (
-    <VStack colorPalette="teal">
-      <Spinner color="colorPalette.600" />
-      <Text color="colorPalette.600">Loading...</Text>
+    <VStack colorPalette="teal" className="center">
+      <Spinner color="colorPalette.600" className="loader" />
+      <Heading color="colorPalette.600" size='3xl'>Loading...</Heading>
     </VStack>
   )
 }
