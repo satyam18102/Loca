@@ -23,7 +23,7 @@ export default function Form(){
     let [ticket,setTicket]=useState('')
     let [cat,setCat]=useState('')
     let [pay,setPay]=useState('')
-    let [loading,setLoading]=useState(true);
+    let [loading,setLoading]=useState(false);
     let [success,setSuccess]=useState(false);
     let [id]=useState(uniqid());
     let [img,setImg]=useState();
